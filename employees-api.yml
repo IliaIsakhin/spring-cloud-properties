@@ -15,5 +15,3 @@ feign:
         connectTimeout: 2000
         readTimeout: 2000
         loggerLevel: full
-  hystrix:
-    enabled: true
