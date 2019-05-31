@@ -1,4 +1,19 @@
-eureka:
+server:
+  port: 9092
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+feign:
+  enabled: true
   client:
-    serviceUrl:
-      defaultZone: http://localhost:8282/eureka/
+    config:
+      workspaces-api:
+        connectTimeout: 2000
+        readTimeout: 2000
+        loggerLevel: full
+  hystrix:
+    enabled: true
