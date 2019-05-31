@@ -4,3 +4,8 @@ eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
+  server:
+    waitTimeInMsWhenSyncEmpty: 10000
+  instance:
+    appGroupName: infra
+    preferIpAddress: true
