@@ -8,5 +8,3 @@ eureka:
 
 instance:
   appname: workspaces-api
-server:
-  port: 9091
