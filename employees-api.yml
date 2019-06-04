@@ -1,5 +1,9 @@
 server:
   port: 9092
+  
+instance:
+  appname:
+    employees-api
 
 management:
   endpoints:
