@@ -1,6 +1,6 @@
     
 eureka:
-    client:
+  client:
     registryFetchIntervalSeconds: 5
     enabled: true
     serviceUrl:
