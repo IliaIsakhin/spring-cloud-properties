@@ -8,15 +8,3 @@ instance:
 feign:
   hystrix:
     enabled: true
-    
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 5000
-
-ribbon:
-  ReadTimeout: 60000
-  ConnectTimeout: 10000
