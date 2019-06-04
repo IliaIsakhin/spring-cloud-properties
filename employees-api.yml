@@ -4,9 +4,3 @@ server:
 instance:
   appname:
     employees-api
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
