@@ -10,12 +10,3 @@ management:
     web:
       exposure:
         include: '*'
-
-feign:
-  enabled: true
-  client:
-    config:
-      workspaces-api:
-        connectTimeout: 2000
-        readTimeout: 2000
-        loggerLevel: full
