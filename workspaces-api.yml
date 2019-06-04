@@ -1,6 +1,10 @@
 spring:
   application:
     name: workspaces-api
+    
+eureka:
+    instance:
+      hostname: 127.0.0.1
 
 instance:
   appname: workspaces-api
