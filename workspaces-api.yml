@@ -3,6 +3,6 @@ spring:
     name: workspaces-api
 
 instance:
-    appname: workspaces-api
+  appname: workspaces-api
 server:
   port: 9091
