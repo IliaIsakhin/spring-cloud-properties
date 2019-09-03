@@ -1,0 +1,28 @@
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: true
+
+zuul:
+  host:
+    socket-timeout-millis: 30000
+    connect-timeout-millis: 30000
+  routes:
+    workspaces:
+      path: /workspaces/**
+      serviceId: workspaces-api
+    employees:
+      path: /employees/**
+      serviceId: employees-api
+
+server:
+  port:
+    9094
+
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
