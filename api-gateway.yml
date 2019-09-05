@@ -11,9 +11,9 @@ spring:
           predicates:
             - Path=/workspaces/**
         - id: employees-api
-          uri: lb://workspaces-api/workspaces/**
+          uri: lb://employees-api/employees/**
           predicates:
-            - Path=/workspaces/**
+            - Path=/employees/**
 
 server:
   port:
