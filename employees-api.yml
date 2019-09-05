@@ -2,6 +2,10 @@ spring:
   application:
     name: employees-api
 
+eureka:
+  instance:
+    hostname: localhost
+
 server:
   port: 9092
   
