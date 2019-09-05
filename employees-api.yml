@@ -1,9 +1,12 @@
+spring:
+  application:
+    name: employees-api
+
 server:
   port: 9092
   
 instance:
-  appname:
-    employees-api
+  appname: employees-api
     
 feign:
   hystrix:
