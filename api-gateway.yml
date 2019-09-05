@@ -7,11 +7,11 @@ spring:
           lowerCaseServiceId: true
       routes:
         - id: workspaces-api
-          uri: lb://workspaces-api/workspaces/**
+          uri: lb://workspaces-service/workspaces/**
           predicates:
             - Path=/workspaces/**
         - id: employees-api
-          uri: lb://employees-api/employees/**
+          uri: lb://employees-service/employees/**
           predicates:
             - Path=/employees/**
 
