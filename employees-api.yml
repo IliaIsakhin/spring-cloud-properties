@@ -11,7 +11,3 @@ server:
   
 instance:
   appname: employees-api
-    
-feign:
-  hystrix:
-    enabled: true
