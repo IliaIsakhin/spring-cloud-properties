@@ -7,3 +7,5 @@ eureka:
       defaultZone: ${EUREKA_SERV:http://127.0.0.1:8282/eureka/}
     registerWithEureka: true
     fetchRegistry: true
+
+logging.config: http://${CONFIG_HOST:localhost}:8888/logback.groovy
