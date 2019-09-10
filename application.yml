@@ -8,4 +8,4 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
 
-logging.config: ${spring.cloud.config.uri}/logback.groovy
+logging.config: ${spring.cloud.config.uri}*/default/master/logback.groovy
