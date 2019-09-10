@@ -9,14 +9,14 @@ def appHost = System.getenv("APP_HOST") ?: 'localhost'
 def logstashHost = System.getenv("LOGSTASH_HOST") ?: "localhost"
 def logstashPort = System.getenv("LOGSTASH_PORT") ?: "5000"
 def level = 'INFO'
+def prop = System.getProperty("spring.application.name")
 
 println "=" * 80
 println """
-   APP NAME             : $appName
+   APP NAME             : $prop
    APP HOST             : $appHost
    LOGSTASH HOST        : $logstashHost
    LOGSTASH PORT        : $logstashPort
-   System.getProperty("spring.application.name")
 """
 println "=" * 80
 
