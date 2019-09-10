@@ -16,6 +16,7 @@ println """
    APP HOST             : $appHost
    LOGSTASH HOST        : $logstashHost
    LOGSTASH PORT        : $logstashPort
+   System.getProperty("spring.application.name")
 """
 println "=" * 80
 
