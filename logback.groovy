@@ -4,9 +4,7 @@ import net.logstash.logback.encoder.LogstashEncoder
 
 import static groovy.json.JsonOutput.toJson
 
-@Value("${spring.application.name}")
-def appName;
-def appName = System.getenv("APP_NAME") ?: 'application'
+def appName = System.getenv("name") ?: 'application'
 def appHost = System.getenv("APP_HOST") ?: 'localhost'
 def logstashHost = System.getenv("LOGSTASH_HOST") ?: "localhost"
 def logstashPort = System.getenv("LOGSTASH_PORT") ?: "5000"
