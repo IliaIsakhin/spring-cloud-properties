@@ -1,45 +1,43 @@
 import ch.qos.logback.classic.encoder.PatternLayoutEncoder
-import net.logstash.logback.appender.LogstashTcpSocketAppender
 import net.logstash.logback.encoder.LogstashEncoder
-
+import com.github.danielwegener.logback.kafka.KafkaAppender
 import static groovy.json.JsonOutput.toJson
 
-def appName = System.getenv("name") ?: 'application'
-def appHost = System.getenv("APP_HOST") ?: 'localhost'
-def logstashHost = System.getenv("LOGSTASH_HOST") ?: "localhost"
-def logstashPort = System.getenv("LOGSTASH_PORT") ?: "5000"
+def appName   = System.getenv("APP_NAME")   ?: 'application'
+def appHost   = System.getenv("APP_HOST")   ?: 'localhost'
+def kafkaHost = System.getenv("KAFKA_HOST") ?: "localhost"
+def kafkaPort = System.getenv("KAFKA_HOST") ?: "9092"
 def level = 'INFO'
 
 println "=" * 80
 println """
-   APP NAME             : $appName
-   APP HOST             : $appHost
-   LOGSTASH HOST        : $logstashHost
-   LOGSTASH PORT        : $logstashPort
+   APP NAME        : $appName
+   APP HOST        : $appHost
+   KAFKA HOST      : $kafkaHost
+   KAFKA POR       : $kafkaPort
 """
 println "=" * 80
 
 def appenderList = []
 
-appender("console", ConsoleAppender) {
+appender("consoleAppender", ConsoleAppender) {
     encoder(PatternLayoutEncoder) {
-//        charset = Charset.forName("UTF-8")
         pattern = "%-4relative %d %-5level [ %t ] %-55logger{13} | %m %n"
     }
 }
 
-appenderList << "console"
+appenderList << "consoleAppender"
 
 if (logstashHost) {
-    appender("logstash", LogstashTcpSocketAppender) {
-        remoteHost = logstashHost
-        port = logstashPort.toInteger()
+    appender("kafkaAppender", KafkaAppender) {
+       topic = "logs"
+       producerConfig = "bootstrap.servers=localhost:9092"
 
-        encoder(LogstashEncoder) {
-            customFields = toJson([app_id: appName, app_host: appHost])
-        }
+       encoder(KafkaAppender) {
+           customFields = toJson([app_id: appName, app_host: appHost])
+       }
     }
-    appenderList << "logstash"
+    appenderList << "kafkaAppender"
 }
 
 root(valueOf(level), appenderList)
