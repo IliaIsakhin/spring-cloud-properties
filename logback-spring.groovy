@@ -1,6 +1,7 @@
 import ch.qos.logback.classic.encoder.PatternLayoutEncoder
-import net.logstash.logback.encoder.LogstashEncoder
+import ch.qos.logback.core.ConsoleAppender
 import com.github.danielwegener.logback.kafka.KafkaAppender
+
 import static groovy.json.JsonOutput.toJson
 
 def appName   = System.getenv("APP_NAME")   ?: 'application'
@@ -14,7 +15,7 @@ println """
    APP NAME        : $appName
    APP HOST        : $appHost
    KAFKA HOST      : $kafkaHost
-   KAFKA POR       : $kafkaPort
+   KAFKA PORT      : $kafkaPort
 """
 println "=" * 80
 
@@ -28,14 +29,14 @@ appender("consoleAppender", ConsoleAppender) {
 
 appenderList << "consoleAppender"
 
-if (logstashHost) {
+if (kafkaHost) {
     appender("kafkaAppender", KafkaAppender) {
-       topic = "logs"
-       producerConfig = "bootstrap.servers=localhost:9092"
+        topic = "logs"
+        producerConfig = "bootstrap.servers=localhost:9092"
 
-       encoder(KafkaAppender) {
-           customFields = toJson([app_id: appName, app_host: appHost])
-       }
+        encoder(KafkaAppender) {
+            customFields = toJson([app_id: appName, app_host: appHost])
+        }
     }
     appenderList << "kafkaAppender"
 }
