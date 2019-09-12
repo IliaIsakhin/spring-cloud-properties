@@ -29,6 +29,16 @@ appender("consoleAppender", ConsoleAppender) {
 
 appenderList << "consoleAppender"
 
+if (kafkaHost) {
+    appender('kafkaAppender', KafkaAppender) {
+        topic = 'logs'
+        producerConfig = ['bootstrap.servers': 'localhost:9092']
 
+        encoder(KafkaAppender) {
+            customFields = toJson([app_id: appName, app_host: appHost])
+        }
+    }
+    appenderList << "kafkaAppender"
+}
 
 root(valueOf(level), appenderList)
